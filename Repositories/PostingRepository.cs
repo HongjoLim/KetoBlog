@@ -51,5 +51,10 @@ namespace KetoBlog.Repositories
         {
             _dbContext.Postings.RemoveRange(entities);
         }
+
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }

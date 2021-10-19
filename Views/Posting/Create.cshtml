@@ -1,0 +1,22 @@
+﻿@model KetoBlog.Models.Posting
+@{
+    Layout = "_Layout";
+}
+
+<fieldset>
+
+    <h1>Post</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        <p>
+            @Html.LabelFor(x => x.Content)
+            @Html.TextAreaFor(x => x.Content)
+            @Html.ValidationMessageFor(x => x.Content)
+        </p>
+
+        <button type="submit">Submit</button>
+    }
+</fieldset>

@@ -14,6 +14,8 @@ namespace KetoBlog.Models
 
         public DateTime LastModifiedDateTime { get; set; }
 
+        [Required]
+        [MinLength(100, ErrorMessage = "Blog Posting must have at least 100 chars in length")]
         public string Content { get; set; }
     }
 }

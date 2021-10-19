@@ -30,6 +30,9 @@ namespace KetoBlog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRepository<Posting>, PostingRepository>();
+            services.AddScoped<IRepository<Comment>, CommentRepository>();
+            services.AddScoped<IRepository<Like>, LikeRepository>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

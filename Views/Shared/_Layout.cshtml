@@ -35,7 +35,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - KetoBlog - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @{var currentYear = DateTime.Now.Year;} @currentYear - KetoBlog
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

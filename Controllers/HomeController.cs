@@ -14,18 +14,14 @@ namespace KetoBlog.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private IRepository<Posting> _postingRepo;
-
-        public HomeController(ILogger<HomeController> logger, IRepository<Posting> postingRepo)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _postingRepo = postingRepo;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var postings = _postingRepo.GetAll();
             return View();
         }
 

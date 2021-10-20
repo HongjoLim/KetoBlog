@@ -7,16 +7,13 @@
 
     <h1>Post</h1>
 
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary()
+    <form asp-action="Create" asp-controller="Posting">
+        <div asp-validation-summary="ModelOnly" class="input-validation-error"></div>
 
         <p>
-            @Html.LabelFor(x => x.Content)
-            @Html.TextAreaFor(x => x.Content)
-            @Html.ValidationMessageFor(x => x.Content)
-        </p>
-
+            <textarea asp-for="Content" rows="10" cols="10" class="form-control" placeholder="Blog Content"></textarea>
+            <span asp-validation-for="Content"></span>
+        <br />
         <button type="submit">Submit</button>
-    }
+    </form>
 </fieldset>

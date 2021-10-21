@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Posting>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,4 +8,22 @@
     <br/>
     <br/>
     <h5>Learn & Share Ketogenic Life Styles</h5>
+</div>
+<div>
+    <h2>Recent Postings</h2>
+    <a asp-controller="Posting" asp-action="Create">Create</a>
+    @{ var postings = Model;
+
+        foreach (Posting posting in postings)
+        {
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@posting.CreatedDateTime</h5>
+                    <p class="card-text">@posting.Content</p>
+                    <a href="#" class="btn btn-primary">Read</a>
+                </div>
+            </div>  
+            }
+        }
 </div>

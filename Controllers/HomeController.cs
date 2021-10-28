@@ -1,4 +1,5 @@
 ﻿using KetoBlog.Models;
+using KetoBlog.Models.ViewModels;
 using KetoBlog.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,18 +15,22 @@ namespace KetoBlog.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Posting> _postingRepo;
+        private readonly IRepository<Recipe> _recipeRepo;
+        private readonly IRepository<Food> _foodRepo;
 
-        public HomeController(ILogger<HomeController> logger, IRepository<Posting> postingRepo)
+        public HomeController(ILogger<HomeController> logger, IRepository<Posting> postingRepo, IRepository<Recipe> recipeRepo, IRepository<Food> foodRepo)
         {
             _logger = logger;
             _postingRepo = postingRepo;
+            _recipeRepo = recipeRepo;
+            _foodRepo = foodRepo;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var postings = _postingRepo.GetAll();
-            return View(postings);
+            var viewModels = new HomeViewModel { Postings = _postingRepo.GetAll(), Foods = _foodRepo.GetAll(), Recipes = _recipeRepo.GetAll() };
+            return View(viewModels);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

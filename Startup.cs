@@ -30,6 +30,8 @@ namespace KetoBlog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRepository<Posting>, PostingRepository>();
+            services.AddScoped<IRepository<Food>, FoodRepository>();
+            services.AddScoped<IRepository<Recipe>, RecipeRepository>();
             services.AddScoped<IRepository<Comment>, CommentRepository>();
             services.AddScoped<IRepository<Like>, LikeRepository>();
 

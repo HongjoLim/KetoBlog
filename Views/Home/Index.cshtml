@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Posting>
+﻿@model KetoBlog.Models.ViewModels.HomeViewModel;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,7 +12,7 @@
 <div>
     <h2>Recent Postings</h2>
     <a asp-controller="Posting" asp-action="Create">Create</a>
-    @{ var postings = Model;
+    @{ var postings = Model.Postings;
 
         foreach (Posting posting in postings)
         {

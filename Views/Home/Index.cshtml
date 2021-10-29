@@ -14,33 +14,48 @@
     <a asp-controller="Postings" asp-action="Create" class="btn btn-primary" role="button">Create</a>
     @{ var postings = Model.Postings;
 
-        foreach (Posting posting in postings)
+        if (postings.Count() > 0)
         {
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@posting.CreatedDateTime</h5>
-                    <p class="card-text">@posting.Content</p>
-                    <a href="#" class="btn btn-primary">Read</a>
+            foreach (Posting posting in postings)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@posting.CreatedDateTime</h5>
+                        <p class="card-text">@posting.Content</p>
+                        <a href="#" class="btn btn-primary">Read</a>
+                    </div>
                 </div>
-            </div>
+            }
         }
+        else
+        {
+            <h4 class="card-title">Sorry, no postings yet!</h4>
+        }
+
     }
 </div>
 <div>
     <h2>Recipies</h2>
     @{ var recipies = Model.Recipes;
 
-        foreach (Recipe recipe in recipies)
+        if (recipies.Count() > 0)
         {
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@recipe.Title</h5>
-                    <p class="card-text">@recipe.Description</p>
-                    <a href="#" class="btn btn-primary">Read</a>
+            foreach (Recipe recipe in recipies)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                        <p class="card-text">@recipe.Description</p>
+                        <a href="#" class="btn btn-primary">Read</a>
+                    </div>
                 </div>
-            </div>
+            }
+        }
+        else
+        {
+            <h4 class="card-title">Sorry, no recipes yet!</h4>
         }
     }
 </div>
@@ -48,16 +63,23 @@
     <h2>Foods</h2>
     @{ var foods = Model.Foods;
 
-        foreach (Food food in foods)
+        if (foods.Count() > 0)
         {
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@food.Name</h5>
-                    <p class="card-text">@food.CategoryId</p>
-                    <a href="#" class="btn btn-primary">Read</a>
+            foreach (Food food in foods)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@food.Name</h5>
+                        <p class="card-text">@food.CategoryId</p>
+                        <a href="#" class="btn btn-primary">Read</a>
+                    </div>
                 </div>
-            </div>
+            }
+        }
+        else
+        {
+            <h4 class="card-title">Sorry, no foods yet!</h4>
         }
     }
 </div>

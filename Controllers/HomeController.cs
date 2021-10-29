@@ -29,7 +29,7 @@ namespace KetoBlog.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var viewModels = new HomeViewModel { Postings = _postingRepo.GetAll(), Foods = _foodRepo.GetAll(), Recipes = _recipeRepo.GetAll() };
+            var viewModels = new HomeViewModel { Postings = _postingRepo.GetAll().Take(3), Foods = _foodRepo.GetAll().Take(3), Recipes = _recipeRepo.GetAll().Take(3) };
             return View(viewModels);
         }
 

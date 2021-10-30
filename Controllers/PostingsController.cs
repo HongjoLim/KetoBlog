@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KetoBlog.Controllers
 {
-    public class PostingController : Controller
+    public class PostingsController : Controller
     {
         private readonly IRepository<Posting> _postingsRepo;
 
@@ -16,7 +16,7 @@ namespace KetoBlog.Controllers
 
         private readonly IRepository<Comment> _commentsRepo;
 
-        public PostingController(IRepository<Posting> postingsRepo, IRepository<Like> likesRepo, IRepository<Comment> commentsRepo)
+        public PostingsController(IRepository<Posting> postingsRepo, IRepository<Like> likesRepo, IRepository<Comment> commentsRepo)
         {
             _postingsRepo = postingsRepo;
             _likesRepo = likesRepo;

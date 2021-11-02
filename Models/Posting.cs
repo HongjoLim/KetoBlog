@@ -10,6 +10,10 @@ namespace KetoBlog.Models
 
         public string UserId { get; set; }
 
+        [Required]
+        [MinLength(20, ErrorMessage ="Posting title must have at least 20 chars")]
+        public string Title { get; set; }
+        
         public DateTime CreatedDateTime { get; set; }
 
         public DateTime LastModifiedDateTime { get; set; }

@@ -4,8 +4,10 @@ const http = require('http').Server(app);
 const bp = require('body-parser');
 const socket = require('socket.io')(http);
 const mongoose = require('mongoose');
+const models = require('./models/Models');
+require('dotenv').config();
 
-const DB_URL = 'mongodb+srv://hongjo1988:%40ghdwh0326@cluster0.khr93.mongodb.net/KetoBlog?retryWrites=true&w=majority';
+const DB_URL = process.env.MONGOLAB_URI;
 
 app.use(express.static(__dirname));
 app.use(bp.json());
@@ -18,9 +20,16 @@ app.get('/postings', (req, res) => {
 })
 
 app.post('/postings', (req, res) => {
-    postings.push(req.body);
-    socket.emit('post', req.body);
-    res.sendStatus(200);
+    let posting = models.Posting(req.body);
+
+    posting.save(err => {
+        if (err)
+            sendStatus(500);
+        else {
+            socket.emit('post', req.body);
+            res.sendStatus(200);
+        }
+    });
 })
 
 socket.on('connection', (so) => {

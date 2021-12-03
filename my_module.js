@@ -1,1 +1,0 @@
-exports.mymodule = () => console.log('haha');

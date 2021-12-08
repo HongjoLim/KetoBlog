@@ -41,6 +41,7 @@
         const postingDiv = $('#postings');
         
         function updatePostings (posting) {
+            console.log(posting);
             postingDiv.append(`<h1>${posting.title}</h1><br><p>${posting.content}</p>`)
         }
 

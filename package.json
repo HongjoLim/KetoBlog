@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.14",
     "socket.io": "^4.4.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.10.0"
   }
 }

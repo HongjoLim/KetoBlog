@@ -16,27 +16,28 @@ app.use(bp.json());
 app.use(bp.urlencoded({extended: false}));
 
 app.get('/postings', (req, res) => {
-    models.Posting.find({}, (err, postings) => {
-        if (err)
-            console.log(err);
-
-        res.send(postings);
-    });
+    models.Posting.find({})
+    .then(postings => res.send(postings));
 });
 
-app.post('/postings', (req, res) => {
-    let posting = models.Posting(req.body);
-    console.log(posting);
+app.post('/postings', async (req, res) => {
+    try {
+        
+        let posting = models.Posting(req.body);
 
-    posting.save()
-    .then(() => {
-        socket.emit('post', req.body);
-        res.sendStatus(200);
-    })
-    .catch(err => {
+        await posting.save();
+    
+        const empty = await models.Posting.findOne().or([{content:''}, {title: ''}]);
+    
+        if (empty) {
+            return models.Posting.deleteOne({_id: empty.id});
+        } else {
+            socket.emit('post', req.body);
+            res.sendStatus(200);
+        }
+    } catch (err) {
         res.sendStatus(500);
-        console.log(err);
-    });
+    }
 });
 
 socket.on('connection', (so) => {
